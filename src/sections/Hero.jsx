@@ -10,6 +10,8 @@ import Target from "../components/Target"
 import ReactLogo from "../components/ReactLogo"
 import Cube from "../components/Cube"
 import Rings from "../components/Ring"
+import HeroCamera from "../components/HeroCamera"
+import Button from "../components/Button"
 
 const Hero = () => {
         const isSmall = useMediaQuery({ query: "(max-width: 440px)"})
@@ -39,10 +41,14 @@ const Hero = () => {
 
             <PerspectiveCamera makeDefault position={[0, 0, 20]} />
             
+
+            <HeroCamera isMobile={isMobile}>
             <HackerRoom 
             position={sizes.deskPosition}
             scale={sizes.deskScale}
             rotation={[0, -Math.PI, 0]}/>
+            </HeroCamera>
+            
 
             <group>
                 <Target position={sizes.targetPosition}/>
@@ -56,8 +62,13 @@ const Hero = () => {
 
             </Suspense>
         </Canvas>
+        </div>
 
 
+        <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
+            <a href='#contact' className="w-fit">
+                <Button name="Let's work togather" isBeam containerClass="sm:w-fit w-full sm:min-w-96" />
+                </a> 
 
         </div>
     </section>
