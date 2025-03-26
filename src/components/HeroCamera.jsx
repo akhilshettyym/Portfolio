@@ -1,20 +1,33 @@
-import { useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { easing } from 'maath'
+"use client"
+
+import { useRef } from "react"
+import { useFrame } from "@react-three/fiber"
+import { easing } from "maath"
 
 const HeroCamera = ({ children, isMobile }) => {
-    const groupRef = useRef();
+  const groupRef = useRef()
 
-    useFrame((state, delta) => {
-        easing.damp3(state.camera.position, [0, 0, 20], 0.25, delta);
+  useFrame((state, delta) => {
+    // Get mouse position from -1 to 1
+    const mouseX = state.pointer.x
+    const mouseY = state.pointer.y
+    const mouseZ = state.pointer.z
 
-        if(!isMobile){
-            easing.dampE(groupRef.current.rotation, [-state.pointer.y / 3, -state.pointer.x / 5, 0], 0.25, delta);
-        }
-    })
-  return (
-    <group ref={groupRef} scale={isMobile ? 1 : 1.3}>{children}</group>
-  )
+    // Apply rotation based on mouse position
+    // Using dampE for smooth transitions
+    easing.dampE(
+      groupRef.current.rotation,
+      [
+        -mouseY * 0.3, // Vertical rotation (look up/down)
+        -mouseX * 0.5, // Horizontal rotation (look left/right)
+        0,
+      ],
+      0.25, // Damping factor - lower = smoother
+      delta,
+    )
+  })
+
+  return <group ref={groupRef}>{children}</group>
 }
 
 export default HeroCamera;
