@@ -6,6 +6,11 @@ import CanvasLoader from "../components/CanvasLoader"
 import { useMediaQuery } from "react-responsive"
 import HeroCamera from "../components/HeroCamera"
 import Button from "../components/Button"
+// import ReactLogo from "../components/ReactLogo";
+// import Target from "../components/Target";
+import Robo from "../components/Robo";
+import Cuby from "../components/Cuby"
+// import Laptop from "../components/laptop"
 
 const Hero = () => {
   const isSmall = useMediaQuery({ query: "(max-width: 440px)" })
@@ -39,6 +44,18 @@ const Hero = () => {
             <HeroCamera>
               <HackerRoom position={[-0.3, 0, 0]} scale={sizes.deskScale} rotation={[0, Math.PI/2, 0]} /> 
             </HeroCamera>
+
+            <group>
+                
+                <Robo position={[2.7, -2, 0]} scale={[0.1, 0.1, 0.1]} rotation={[0, 2.5, 0]} />
+                <Cuby position={[2.5, 0.8, 0]} scale={[0.3, 0.3, 0.3]} rotation={[0, 6, 0]} />
+                {/* <Laptop position={[-2.7, -2, 0]} scale={[0.5, 0.5, 0.5]} rotation={[0, 6, 0]} /> */}
+
+                {/* <Target position={[-2.7, -3.5, 0]} scale={sizes.deskScale} /> */}
+                {/* <ReactLogo position={sizes.reactLogoPosition}/> */}
+                {/* <Cube position={sizes.cubePosition}/> */}
+                {/* <Rings position={sizes.ringPosition}/> */}
+            </group>
 
             <ambientLight intensity={2.5} />
             <directionalLight position={[10, 10, 10]} intensity={2} />
